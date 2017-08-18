@@ -1,0 +1,12 @@
+lyrics = ["Partridge in a Pear Tree", "Turtle Doves", "French Hens", "Calling Birds", "Golden Rings", "Geese a Laying", "Swans a Swimming", "Maids a Milking", "Ladies Dancing", "Lords a Leaping", "Pipers Piping", "Drummers Drumming"]
+nums = ["a", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
+days = ["first", "second", "third", "fourth", "fifth", "sisxth", "seventh", "eigth", "ninth", "tenth", "eleventh", "twelvth"]
+
+12.times do |n|
+
+  puts "\n\nOn the #{days[n]} of christmas, my true love gave to me"
+  n.downto(0) do |i|
+    puts "#{nums[i]} #{lyrics[i]}" unless i == 0
+	if i==0 then puts n == 0 ? "#{nums[i]} #{lyrics[i]}" :  "And #{nums[i]} #{lyrics[i]}" end
+  end
+end
