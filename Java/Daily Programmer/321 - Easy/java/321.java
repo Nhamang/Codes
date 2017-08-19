@@ -26,42 +26,49 @@ class prog{
 		System.out.print("What time is it?: ");
 		time = user_input.next();
 		*/
-		
-		//Gets the current time
-		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-		Date date = new Date();
-		String time = dateFormat.format(date);
-		
-		//Splits time to hours and minutes and turns them to Integers
-		String [] timeSplit = time.split(":");
-		String [] minSplit;
-		hour = Integer.parseInt(timeSplit[0]);
-		min = Integer.parseInt(timeSplit[1]);
-		
-		time = "It's ";
-		
-		//Converts 24h to 12h and sets PM or AM
-		if(hour >= 12){
-			hour -= 12;
-			AMPM = "PM";
-		}
-		
-		time += strArrayHours[hour] + " ";
-		
-		
-		if(min <= 19){
-			if(min > 0 && min < 10){
-				time += "oh ";
+		while(true){
+			//Gets the current time
+			DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+			Date date = new Date();
+			String time = dateFormat.format(date);
+			
+			//Splits time to hours and minutes and turns them to Integers
+			String [] timeSplit = time.split(":");
+			String [] minSplit;
+			hour = Integer.parseInt(timeSplit[0]);
+			min = Integer.parseInt(timeSplit[1]);
+			
+			time = "It's ";
+			
+			//Converts 24h to 12h and sets PM or AM
+			if(hour >= 12){
+				hour -= 12;
+				AMPM = "PM";
 			}
 			
-			time += strArrayMin[min];
-		}else{
-			minSplit = timeSplit[1].split("");
-			time += strArrayTens[Integer.parseInt(minSplit[0])-2] + " " + strArrayMin[Integer.parseInt(minSplit[1])];
+			time += strArrayHours[hour] + " ";
 			
+			
+			if(min <= 19){
+				if(min > 0 && min < 10){
+					time += "oh ";
+				}
+				
+				time += strArrayMin[min];
+			}else{
+				minSplit = timeSplit[1].split("");
+				time += strArrayTens[Integer.parseInt(minSplit[0])-2] + " " + strArrayMin[Integer.parseInt(minSplit[1])];
+				
+			}
+			
+			time += " " + AMPM;
+			System.out.println(time);
+			try{
+				Thread.sleep(60000);
+			}catch(InterruptedException e){
+				Thread.currentThread().interrupt();
+			}
+			//TimeUnit.SECONDS.sleep(1);
 		}
-		
-		time += " " + AMPM;
-		System.out.println(time);
 	}
 }
