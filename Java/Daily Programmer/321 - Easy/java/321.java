@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import java.util.*;
+import java.text.*;
 
 class challenge321{
 	public static void main(String [] args){
@@ -13,14 +14,25 @@ class prog{
 	String AMPM = "AM";
 	int hour, min;
 	
+	//Arrays containing the hours and minutes
 	String [] strArrayHours = {"Twelve", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven"};
 	String [] strArrayMin ={" ", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "thirteen", "fourteen", "fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
 	String [] strArrayTens = {"Twenty", "Thirty", "Fouty", "Fifty"};
 	
 	void runCode(){
+		
+		/*
 		Scanner user_input = new Scanner(System.in);
 		System.out.print("What time is it?: ");
 		time = user_input.next();
+		*/
+		
+		//Gets the current time
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+		Date date = new Date();
+		String time = dateFormat.format(date);
+		
+		//Splits time to hours and minutes and turns them to Integers
 		String [] timeSplit = time.split(":");
 		String [] minSplit;
 		hour = Integer.parseInt(timeSplit[0]);
@@ -28,12 +40,14 @@ class prog{
 		
 		time = "It's ";
 		
+		//Converts 24h to 12h and sets PM or AM
 		if(hour >= 12){
 			hour -= 12;
 			AMPM = "PM";
 		}
 		
 		time += strArrayHours[hour] + " ";
+		
 		
 		if(min <= 19){
 			if(min > 0 && min < 10){
